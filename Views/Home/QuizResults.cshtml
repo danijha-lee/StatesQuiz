@@ -1,0 +1,37 @@
+﻿@model StatesQuiz.Models.TestResult
+@{
+    ViewData["Title"] = "Quiz Results";
+    int grade = Model.NumberCorrect * 10;
+
+}
+
+<div class="row mt-5 login-card">
+    <div class="col-8 card  ">
+        <div class="card-body text-center">
+            <h1 class="">Your Results</h1>
+            <h1>@grade</h1>
+            <h6>you scored</h6>
+            <h3 class="mb-2">@Model.NumberCorrect out of @Model.TotalQuestions questions correct</h3>
+            <a asp-action="PreviousResults" asp-controller="Home" asp-route-Id="@Model.UserId" class="btn btn-warning">View Previous Test Grades</a>
+
+            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Retake Quiz</button>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            @*<h5 class="modal-title">Modal title</h5>*@
+                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="~/AmericanFlagStatesNCapitals.png" width="400" height="600" />
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                            <a asp-action="Quiz" asp-controller="Home" class="btn btn-primary" type="button">Take Quiz</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

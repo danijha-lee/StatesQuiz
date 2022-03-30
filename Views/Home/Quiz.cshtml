@@ -1,0 +1,41 @@
+﻿@model StatesQuiz.Models.ViewModel.QuizViewModel
+@using StatesQuiz.Models
+@using StatesQuiz.Services.Interfaces
+@inject ISQQuizService _quizService
+
+@{ 
+    ViewData["Title"] = "Quiz";
+        }
+<div class="row ">
+    <div class="col-sm-12 ">
+        <div class="card">
+            <div class="card-header mt-5 pb-0">
+                <h5>Supply each state with the correct Capital</h5>
+            </div>
+            <form class="form theme-form " method="post" asp-action="Quiz" asp-controller="Home">
+                <div class="card-body">
+
+                    @{
+                        int stateCount = 0;
+                        foreach (States state in Model.States)
+                        {
+                            <input hidden name="state_@(++stateCount).State" value="@state.State" />
+                            <input hidden name="state_@(stateCount).StateId" value="@state.StateId" />
+                            <div class="mb-3">
+                                <label class="form-label">@state.State</label>
+                                <input class="form-control" asp-for="@state.Capital" required name="state_@(stateCount).Capital" value="">
+                            </div>
+
+                        }
+
+                        <div class="card-footer text-end">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                            
+                        </div>
+
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

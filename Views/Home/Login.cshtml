@@ -1,0 +1,55 @@
+﻿@model StatesQuiz.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+   
+    
+var attempsLeft = 3 - (@ViewBag.Attempt);
+}
+
+
+            <div class="row">
+                <div class="col-12 ">
+                    <div class="login-card">
+                        <form id="account" method="post" class="theme-form login-form">
+                            <input hidden name="attempt" value="@ViewBag.Attempt" />
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <h4>Login</h4>
+                            <h6>Welcome back! Log in to your account.</h6>
+                           @if(attempsLeft < 2)
+                                {
+
+                                <p> @attempsLeft attempts left.</p>
+                                }
+                            <div class="form-group">
+                                <label></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="icon-email"></i></span>
+                                    <input class="form-control" asp-for="UserName" placeholder="UserName">
+                                    <span class="text-danger" asp-validation-for="UserName"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                                    <input class="form-control" asp-for="Password" placeholder="*********">
+                                    <span class="text-danger"></span>
+                                    <div class="show-hide" asp-validation-for="Password"><span class="show"></span></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+                            </div>
+
+                            @*<p>Don't have an account?<a class="ms-2">Create Account</a></p>*@
+                            <hr />
+                            <div class="mb-1 text-center">
+                        </form>
+                       
+                        @*<div class="logo-wrapper"><img class="img-fluid" src="~/Img/ArcherNavLogo.png" alt="App Logo"></div>*@
+                    </div>
+                </div>
+            </div>
+        
